@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
-import Navbar from "@/components/navbar";
-import Hero from "@/components/hero";
-import NoiseBackground from "@/components/noise-background";
+import Navbar from "@/components/Home/Navbar";
+import Hero from "@/components/Home/Hero";
+import NoiseBackground from "@/components/NoiseBackground";
 
 // Scroll restoration component
 const ScrollRestoration = () => {
@@ -31,15 +31,15 @@ const ScrollRestoration = () => {
 };
 
 // Lazy load components
-const About = dynamic(() => import("@/components/About"));
+const About = dynamic(() => import("@/components/Home/About"));
 
-const Spotlight = dynamic(() => import("@/components/Spotlight"));
+const Spotlight = dynamic(() => import("@/components/Home/Spotlight"));
 
-const Career = dynamic(() => import("@/components/Career"));
+const Career = dynamic(() => import("@/components/Home/Career"));
 
-const Contact = dynamic(() => import("@/components/contact"));
+const Contact = dynamic(() => import("@/components/Home/Contact"));
 
-const Footer = dynamic(() => import("@/components/footer"));
+const Footer = dynamic(() => import("@/components/Home/Footer"));
 
 // LazyLoad wrapper component
 function LazyLoad({ children }: { children: React.ReactNode }) {

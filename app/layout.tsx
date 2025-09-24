@@ -1,8 +1,8 @@
 import type React from "react";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import FloatingCursor from "@/components/floating-cursor";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import FloatingCursor from "@/components/FloatingCursor";
 import type { Metadata } from "next"; // Import Metadata type
 
 const inter = Inter({ subsets: ["latin"] });

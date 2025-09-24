@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Download } from "lucide-react";
-import { TextGenerateEffect } from "./TextGenerateEffect";
+import { TextGenerateEffect } from "../TextGenerateEffect";
 
 export default function Hero() {
     const shapeRef = useRef<HTMLDivElement>(null);
