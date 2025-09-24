@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Download } from "lucide-react";
 import { TextGenerateEffect } from "./TextGenerateEffect";
@@ -75,7 +76,9 @@ export default function Hero() {
                             transition={{ duration: 0.5, delay: 0.4 }}
                             className="text-neutral-400 mb-8 max-w-md text-lg"
                         >
-                            Découvrez mes projets en développement, web, et Game dev, ainsi que ma vision et mon parcours professionel.
+                            Découvrez mes projets en développement, web, et Game
+                            dev, ainsi que ma vision et mon parcours
+                            professionel.
                         </motion.p>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -83,10 +86,13 @@ export default function Hero() {
                             transition={{ duration: 0.5, delay: 0.6 }}
                             className="flex flex-col sm:flex-row gap-4"
                         >
-                            <button className="border border-white px-8 py-3 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors flex items-center justify-center">
+                            <Link
+                                href="/projects"
+                                className="border border-white px-8 py-3 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors flex items-center justify-center"
+                            >
                                 Mes Projets
                                 <ArrowRight className="ml-2 h-4 w-4" />
-                            </button>
+                            </Link>
                             <button className="border border-neutral-800 px-8 py-3 text-sm uppercase tracking-widest text-neutral-400 hover:border-neutral-600 hover:text-white transition-colors flex items-center justify-center">
                                 Mon CV
                                 <Download className="ml-2 h-4 w-4" />
@@ -107,7 +113,7 @@ export default function Hero() {
                             className="relative transition-transform duration-200 ease-out"
                             style={{ transformStyle: "preserve-3d" }}
                         >
-                            {/* Background shape - appears first */}
+                            {/* Background shape 1 - appears first */}
                             <motion.div
                                 className="absolute -bottom-5 -right-10 w-2/3 h-2/3 border border-neutral-800 bg-neutral-950 z-[-1]"
                                 initial={{ opacity: 0, x: 10, y: 10 }}
@@ -120,7 +126,7 @@ export default function Hero() {
                                 style={{ transform: "translateZ(-20px)" }}
                             ></motion.div>
 
-                            {/* Background shape - appears first */}
+                            {/* Background shape 2 - appears second */}
                             <motion.div
                                 className="absolute -top-5 -left-10 w-2/3 h-2/3 border border-neutral-700 bg-neutral-800 z-[-1]"
                                 initial={{ opacity: 0, x: 10, y: 10 }}
@@ -133,7 +139,7 @@ export default function Hero() {
                                 style={{ transform: "translateZ(-20px)" }}
                             ></motion.div>
 
-                            {/* Main square container */}
+                            {/* Main logo container */}
                             <motion.div
                                 className="aspect-square relative overflow-hidden"
                                 initial={{ opacity: 0, scale: 0.92 }}

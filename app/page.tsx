@@ -31,15 +31,11 @@ const ScrollRestoration = () => {
 };
 
 // Lazy load components
-const Features = dynamic(() => import("@/components/features"));
+const About = dynamic(() => import("@/components/About"));
 
-const Work = dynamic(() => import("@/components/work"));
+const Spotlight = dynamic(() => import("@/components/Spotlight"));
 
-const Process = dynamic(() => import("@/components/process"));
-
-const Testimonials = dynamic(() => import("@/components/testimonials"));
-
-const Pricing = dynamic(() => import("@/components/pricing"));
+const Career = dynamic(() => import("@/components/Career"));
 
 const Contact = dynamic(() => import("@/components/contact"));
 
@@ -69,25 +65,19 @@ function LazyLoad({ children }: { children: React.ReactNode }) {
 
 export default function Home() {
   return (
-    <main className="bg-black text-white min-h-[7500px]">
+    <main className="bg-black text-white">
       <ScrollRestoration />
       <NoiseBackground />
       <Navbar />
       <Hero />
       <LazyLoad>
-        <Features />
+        <About />
       </LazyLoad>
       <LazyLoad>
-        <Work />
+        <Spotlight />
       </LazyLoad>
       <LazyLoad>
-        <Process />
-      </LazyLoad>
-      <LazyLoad>
-        <Testimonials />
-      </LazyLoad>
-      <LazyLoad>
-        <Pricing />
+        <Career />
       </LazyLoad>
       <LazyLoad>
         <Contact />

@@ -57,11 +57,12 @@ export default function Navbar() {
                     </nav>
 
                     <div className="hidden md:block">
-                        <a href="#contact">
-                            <button className="border border-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
-                                Contact
-                            </button>
-                        </a>
+                        <Link
+                            href="#contact"
+                            className="border border-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
+                        >
+                            Contact
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -109,11 +110,12 @@ export default function Navbar() {
                             >
                                 Parcours Professionel
                             </Link>
-                            <a href="#contact">
-                                <button className="border border-white px-5 py-3 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors w-full mt-4">
-                                    Contact
-                                </button>
-                            </a>
+                            <Link
+                                href="#contact"
+                                className="border border-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
+                            >
+                                Contact
+                            </Link>
                         </nav>
                     </div>
                 </motion.div>
