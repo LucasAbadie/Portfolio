@@ -5,7 +5,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-export default function Navbar() {
+type NavbarProps = {
+    links?: { label: string; href: string }[];
+};
+
+export default function Navbar({ links = [] }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -35,30 +39,22 @@ export default function Navbar() {
                         LUCAS A<span className="text-neutral-400">.</span>
                     </Link>
 
+                    {/* Links container */}
                     <nav className="hidden md:flex items-center space-x-8">
-                        <Link
-                            href="#about"
-                            className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-widest"
-                        >
-                            À Propos
-                        </Link>
-                        <Link
-                            href="#spotlight"
-                            className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-widest"
-                        >
-                            Spotlight
-                        </Link>
-                        <Link
-                            href="#career"
-                            className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-widest"
-                        >
-                            Parcours Professionel
-                        </Link>
+                        {links.map((link, i) => (
+                            <Link
+                                key={i}
+                                href={link.href}
+                                className="text-neutral-400 hover:text-white transition-colors text-sm uppercase tracking-widest"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
                     </nav>
 
                     <div className="hidden md:block">
                         <Link
-                            href="#contact"
+                            href="/#contact"
                             className="border border-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
                         >
                             Contact

@@ -63,7 +63,7 @@ export default function Career() {
 
     return (
         <section
-            id="process"
+            id="career"
             className="py-24 relative overflow-hidden bg-[#0a0a0a]"
         >
             <div className="container mx-auto px-4 md:px-8 relative z-10">

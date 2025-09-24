@@ -93,10 +93,13 @@ export default function Hero() {
                                 Mes Projets
                                 <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
-                            <button className="border border-neutral-800 px-8 py-3 text-sm uppercase tracking-widest text-neutral-400 hover:border-neutral-600 hover:text-white transition-colors flex items-center justify-center">
+                            <a
+                                href="https://bank.lucasabadie.fr/public/CV.pdf"
+                                className="border border-neutral-800 px-8 py-3 text-sm uppercase tracking-widest text-neutral-400 hover:border-neutral-600 hover:text-white transition-colors flex items-center justify-center"
+                            >
                                 Mon CV
                                 <Download className="ml-2 h-4 w-4" />
-                            </button>
+                            </a>
                         </motion.div>
                     </div>
                     {/* shape with professional animation sequence */}

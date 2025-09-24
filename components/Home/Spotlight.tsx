@@ -27,7 +27,7 @@ export default function Spotlight() {
         {
             title: "Sifter",
             subtitle: "Jeu PC",
-            image: "/works/3.webp?height=600&width=800",
+            image: "",
             year: "2025",
             link: "/projects/sifter",
         },

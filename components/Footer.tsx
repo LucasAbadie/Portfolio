@@ -1,6 +1,11 @@
+import Link from "next/link";
 import { Linkedin, Github } from "lucide-react";
 
-export default function Footer() {
+type FooterProps = {
+    links?: { label: string; href: string }[];
+};
+
+export default function Footer({ links = [] }: FooterProps) {
     return (
         <footer className="py-7 pb-5 border-t border-neutral-800">
             <div className="container mx-auto px-4 md:px-8">
@@ -11,25 +16,17 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="flex flex-col md:flex-row gap-8 md:items-center">
+                        {/*  */}
                         <nav className="flex gap-6">
-                            <a
-                                href="#about"
-                                className="text-neutral-400 hover:text-white transition-colors text-sm"
-                            >
-                                À Propos
-                            </a>
-                            <a
-                                href="#spotlight"
-                                className="text-neutral-400 hover:text-white transition-colors text-sm"
-                            >
-                                Spotlight
-                            </a>
-                            <a
-                                href="#career"
-                                className="text-neutral-400 hover:text-white transition-colors text-sm"
-                            >
-                                Parcours Professionel
-                            </a>
+                            {links.map((link, i) => (
+                                <Link
+                                    key={i}
+                                    href={link.href}
+                                    className="text-neutral-400 hover:text-white transition-colors text-sm"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
                         </nav>
                         <div className="h-6 w-px bg-neutral-800 hidden md:block"></div>
                         <div className="flex gap-4">
@@ -88,13 +85,13 @@ export default function Footer() {
                     </p>
                     <div className="flex gap-6">
                         <a
-                            href="#"
+                            href="/privacy-policy"
                             className="text-neutral-400 hover:text-white transition-colors text-sm"
                         >
                             Privacy Policy
                         </a>
                         <a
-                            href="#"
+                            href="/therms-of-service"
                             className="text-neutral-400 hover:text-white transition-colors text-sm"
                         >
                             Terms of Service
