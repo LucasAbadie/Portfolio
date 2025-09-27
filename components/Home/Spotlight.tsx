@@ -13,14 +13,14 @@ export default function Spotlight() {
         {
             title: "RecovR",
             subtitle: "The Seed Crew",
-            image: "/works/RecovR/RecovR.webp?height=600&width=800",
+            image: "/assets/works/RecovR/RecovR.webp?height=600&width=800",
             year: "2019 - 2023",
             link: "/projects/recovr",
         },
         {
             title: "Day Off",
             subtitle: "The Seed Crew",
-            image: "/works/DayOff/DayOff.webp?height=600&width=800",
+            image: "/assets/works/DayOff/DayOff.webp?height=600&width=800",
             year: "2023 - 2024",
             link: "/projects/dayoff",
         },
@@ -34,7 +34,7 @@ export default function Spotlight() {
         {
             title: "Perfect Match",
             subtitle: "Jeu Mobile",
-            image: "/works/PerfectMatch/PerfectMatch.webp?height=600&width=800",
+            image: "/assets/works/PerfectMatch/PerfectMatch.webp?height=600&width=800",
             year: "2017-2018",
             link: "/projects/perfect-match",
         },
@@ -82,7 +82,7 @@ export default function Spotlight() {
                         >
                             <div className="relative aspect-[4/3] overflow-hidden border-2 border-white/20 mb-4 group-hover:border-white/50 transition-all duration-300">
                                 <Image
-                                    src={project.image || "/placeholder.svg"}
+                                    src={project.image || "/assets/placeholder.svg"}
                                     alt={project.title}
                                     fill
                                     className="object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105"

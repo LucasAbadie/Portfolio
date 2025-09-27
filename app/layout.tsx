@@ -42,8 +42,6 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "/image.png", // Path to your image in the public folder
-                width: 1200, // Optional: Specify image width
-                height: 630, // Optional: Specify image height
                 alt: "Lucas Abadie Website Preview", // Optional: Alt text for the image
             },
         ],

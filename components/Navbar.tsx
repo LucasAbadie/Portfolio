@@ -85,29 +85,19 @@ export default function Navbar({ links = [] }: NavbarProps) {
                 >
                     <div className="container mx-auto px-4 py-8">
                         <nav className="flex flex-col space-y-6">
+                            {links.map((link, i) => (
+                                <Link
+                                    key={i}
+                                    href={link.href}
+                                    className="text-neutral-400 hover:text-white py-2 text-2xl font-light"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+
                             <Link
-                                href="#about"
-                                className="text-neutral-400 hover:text-white py-2 text-2xl font-light"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                À Propos
-                            </Link>
-                            <Link
-                                href="#spotlight"
-                                className="text-neutral-400 hover:text-white py-2 text-2xl font-light"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Spotlight
-                            </Link>
-                            <Link
-                                href="#career"
-                                className="text-neutral-400 hover:text-white py-2 text-2xl font-light"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Parcours Professionel
-                            </Link>
-                            <Link
-                                href="#contact"
+                                href="/#contact"
                                 className="border border-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
                             >
                                 Contact

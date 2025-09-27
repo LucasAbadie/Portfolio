@@ -123,9 +123,9 @@ export default function About() {
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                 >
-                    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 justify-items-center align-items-center">
+                    <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 place-items-center">
                         <Image
-                            src="/me.webp"
+                            src="/assets/me.webp"
                             alt="Moi, avec une barbe et les cheveux attachés, assis à un bureau, concentré sur des écrans d'ordinateur affichant du code."
                             width={800}
                             height={800}
@@ -139,54 +139,50 @@ export default function About() {
 
                                 <div className="relative z-10 min-h-[200px] flex flex-col">
                                     <p>
-                                        <br />
-                                        Passionné par l'univers des jeux vidéo,
-                                        de l'informatique, et des nouvelles
-                                        technologies qu'elles soient dans cet
-                                        univers ou non, j'ai pour but de
-                                        réaliser ma propre vision d'un{" "}
-                                        <a
-                                            href="https://fr.wikipedia.org/wiki/Jeu_de_rôle_en_ligne_massivement_multijoueur"
-                                            target="_blank"
-                                        >
-                                            MMORPG
-                                        </a>
-                                        , un type de jeu que j'affectionne
-                                        particulièrement.
+                                        Passionné par l’univers des technologies
+                                        et des jeux vidéo, je transforme mes
+                                        idées en expériences interactives et
+                                        applications concrètes. Mon objectif est
+                                        de créer des projets immersifs et
+                                        fonctionnels, alliant créativité et
+                                        technique.
                                         <br />
                                         <br />
-                                        Par le biais de divers projets
-                                        individuels ou en équipe, j'ai pu me
-                                        former à l'utilisation des logiciels
-                                        <a
-                                            href="https://unity3d.com/fr"
-                                            target="_blank"
-                                        >
-                                            Unity3D
-                                        </a>{" "}
-                                        et
-                                        <a
-                                            href="https://www.unrealengine.com/en-US/what-is-unreal-engine-4"
-                                            target="_blank"
-                                        >
-                                            Unreal Engine 4
-                                        </a>
-                                        . De la réalisation d’un projet de
-                                        réalité augmentée à celle d’un « puzzle
-                                        game » et d'un action-platformer 2D
-                                        mobile pour Unity, ou d'un jeu d’action
-                                        en 3D à la troisième personne sur Unreal
-                                        Engine 4, j’ai consolidé mes compétences
-                                        dans la programmation Gameplay tout en
-                                        renforçant ma curiosité et mon intérêt
-                                        pour ce milieu.
+                                        À travers mes projets personnels et
+                                        collaboratifs, j’ai exploré Unity et
+                                        Unreal Engine pour le développement de
+                                        jeux 2D et 3D, ainsi que les
+                                        technologies web et fullstack pour des
+                                        applications interactives et des sites
+                                        performants. Ces expériences m’ont
+                                        permis de renforcer mes compétences en
+                                        programmation, en design d’interaction
+                                        et en gestion de projet, tout en
+                                        nourrissant ma curiosité et ma
+                                        créativité.
                                         <br />
                                         <br />
-                                        Efficace et sérieux, je mettrai toute
-                                        mon énergie à la finalisation de mon
-                                        objectif.
+                                        Au-delà de la technique, j’attache une
+                                        grande importance à l’expérience
+                                        utilisateur et à la qualité du design,
+                                        cherchant toujours à proposer des
+                                        interfaces claires, intuitives et
+                                        agréables à utiliser. Je suis également
+                                        passionné par l’apprentissage continu,
+                                        expérimentant de nouvelles technologies
+                                        et méthodologies pour rester à la pointe
+                                        des innovations.
                                         <br />
                                         <br />
+                                        Curieux, rigoureux et déterminé, je mets
+                                        toute mon énergie à concevoir des
+                                        solutions innovantes, que ce soit dans
+                                        le jeu vidéo ou dans le développement
+                                        web, en transformant chaque idée en
+                                        projet concret et abouti. Mon ambition
+                                        est de contribuer à des projets qui
+                                        allient performance, créativité et
+                                        impact réel pour les utilisateurs.
                                     </p>
                                 </div>
                             </div>

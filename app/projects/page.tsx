@@ -20,7 +20,7 @@ const projects = [
             "FullStack",
             "Multiplatform",
         ],
-        image: "/works/RecovR/RecovR.webp",
+        image: "/assets/works/RecovR/RecovR.webp",
         link: "/projects/project-one",
     },
     {
@@ -33,7 +33,7 @@ const projects = [
             "C#",
             "Mobile",
         ],
-        image: "/works/DayOff/DayOff.webp",
+        image: "/assets/works/DayOff/DayOff.webp",
         link: "/projects/project-two",
     },
     {
@@ -111,7 +111,7 @@ export default function Projects() {
                                 <div className="relative aspect-[4/3] overflow-hidden border-2 border-white/20 mb-4 group-hover:border-white/50 transition-all duration-300">
                                     <Image
                                         src={
-                                            project.image || "/placeholder.svg"
+                                            project.image || "/assets/placeholder.svg"
                                         }
                                         alt={project.title}
                                         fill
