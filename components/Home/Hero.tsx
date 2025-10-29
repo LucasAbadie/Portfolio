@@ -35,7 +35,7 @@ export default function Hero() {
     const shapeAnimationDelay = 0.6;
 
     return (
-        <section className="relative flex items-center px-10 py-[100px] sm:py-[110px] overflow-hidden">
+        <section className="relative lg:h-screen flex items-center px-10 py-[100px] sm:py-[110px] overflow-hidden">
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_#222_0%,_#000_100%)]"></div>
             </div>

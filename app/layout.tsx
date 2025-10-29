@@ -58,7 +58,7 @@ export default function RootLayout({
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
             <body
-                className={`${inter.className} bg-black mx-auto max-w-[1440px]`}
+                className={`${inter.className} bg-black`}
             >
                 <ThemeProvider
                     attribute="class"
