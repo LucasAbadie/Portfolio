@@ -88,13 +88,13 @@ export default function Footer({ links = [] }: FooterProps) {
                             href="/privacy-policy"
                             className="text-neutral-400 hover:text-white transition-colors text-sm"
                         >
-                            Privacy Policy
+                            Politique de confidentialité
                         </a>
                         <a
-                            href="/therms-of-service"
+                            href="/legal-notice"
                             className="text-neutral-400 hover:text-white transition-colors text-sm"
                         >
-                            Terms of Service
+                            Mentions légales
                         </a>
                     </div>
                 </div>
