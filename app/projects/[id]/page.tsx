@@ -51,6 +51,8 @@ export default async function ProjectPage({ params }: Props) {
                 Categories={project.categories}
                 Pitch={project.content.pitch}
                 Banner={project.banner}
+                ProjectUrl={project.url}
+                GithubUrl={project.githubUrl}
             />
             <div className="px-8 pt-40 pb-8 xl:py-40 bg-gradient-to-b from-black to-neutral-900">
                 <VideoIntro video={project.content.video} />

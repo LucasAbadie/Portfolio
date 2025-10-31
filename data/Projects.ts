@@ -12,6 +12,7 @@ export type Project = {
     date?: string;
     banner: string;
     url?: string;
+    githubUrl?: string;
     content: {
         pitch: string;
         video?: string;
@@ -46,7 +47,6 @@ export const projects: Project[] = [
         ],
         date: "2025",
         banner: "/images/projects/toon-tanks-banner.webp",
-        url: "",
         content: {
             pitch: "Toon Tanks est un jeu d’arcade développé sous Unreal Engine 5, où le joueur prend les commandes d’un petit tank pour affronter des vagues de tourelles ennemies.\n\nLe principe est simple mais addictif : esquiver, viser, tirer et survivre le plus longtemps possible. Inspiré des classiques du genre, le jeu combine rapidité, précision et fun immédiat.\n\nRéalisé dans le cadre d’une formation Udemy, ce projet m’a permis d’approfondir la programmation C++ dans Unreal, de comprendre la structure du gameplay framework et d’explorer la création d’une IA basique. Une extension multijoueur est prévue afin d’ajouter un mode compétitif entre joueurs.",
             images: [
@@ -122,7 +122,7 @@ export const projects: Project[] = [
         ],
         date: "2025",
         banner: "/assets/projects/Sifter/Sifter5.webp",
-        url: "",
+        githubUrl: "https://github.com/LucasAbadie/Sifter",
         content: {
             pitch: "Sifter est un jeu d’aventure et d’exploration développé sous Unreal Engine 5, où le joueur incarne un pilleur de tombeaux en quête de richesses et de liberté. Chaque expédition se déroule dans des lieux abandonnés — manoirs, ruines ou catacombes — remplis d’objets précieux, d’énigmes à résoudre et de pièges mortels à éviter.\n\nLe joueur doit collecter les trésors sans les endommager, tout en affrontant des hordes d’ennemis et en protégeant son butin. Une phase de préparation permettra d’acheter du matériel et d’améliorer son équipement entre les explorations, ajoutant une dimension stratégique à l’expérience.\n\nÀ terme, un mode multijoueur viendra enrichir le jeu, offrant une expérience coopérative où plusieurs explorateurs uniront leurs efforts pour s’enrichir et survivre ensemble. Le but ultime : amasser assez de fortune pour payer son droit à la liberté… ou découvrir un secret bien plus sombre.",
             images: [
@@ -207,6 +207,7 @@ export const projects: Project[] = [
         url: "https://www.theseedcrew.com/day-off/",
         content: {
             pitch: "Day Off est une expérience narrative développée sous Unity qui plonge le joueur dans le quotidien numérique de Charlie, une employée dont la vie personnelle et professionnelle se confondent peu à peu.\n\nÀ travers une interface simulant un smartphone, le joueur interagit avec des applications, des notifications, des mails et des messages, observant jour après jour la montée de la pression, des attentes et de la fatigue mentale.\n\nL’expérience se déroule sur cinq journées consécutives, reflétant la lente dégradation de l’équilibre entre vie pro et perso. Sans recours à des dialogues explicites, le jeu mise sur le réalisme des interactions et le rythme des notifications pour transmettre le poids psychologique du burn-out.\n\nDay Off propose ainsi une expérience introspective et réaliste sur la santé mentale au travail, encourageant la réflexion et la prise de conscience à travers un format accessible et immersif.",
+            video: "",
             images: [
                 {
                     url: "/assets/projects/DayOff/DayOff.webp",
@@ -363,7 +364,6 @@ export const projects: Project[] = [
         url: "https://recovr.me",
         content: {
             pitch: "RecovR est une expérience interactive unique qui place les joueurs face à des situations de discrimination inspirées du réel.\nDans un univers immersif en 3D, chacun explore différents choix de comportements et en mesure les conséquences, sans culpabilisation.\n\nDéveloppé à partir de 5 années de recherche en sciences humaines et sociales, RecovR accompagne les organisations dans la construction d’une culture plus inclusive.\n\nDisponible en atelier collectif ou en format digital modulable, RecovR offre des outils de sensibilisation concrets, engageants et mesurables pour transformer durablement les pratiques.",
-            video: "",
             images: [
                 {
                     url: "/assets/projects/RecovR/RecovR0.webp",
@@ -454,7 +454,8 @@ export const projects: Project[] = [
         ],
         date: "2025",
         banner: "/images/projects/3defenz-banner.webp",
-        url: "",
+        url: "https://3defenz.lucasabadie.fr/",
+        githubUrl: "https://github.com/LucasAbadie/3DefenZ",
         content: {
             pitch: "3DefenZ est un tower defense développé sous Unity et conçu pour une diffusion web. Le joueur doit gérer ses ressources pour placer et améliorer différentes tourelles face à des vagues d’ennemis aux comportements variés.\n\nLe projet met l’accent sur la lisibilité, la progression stratégique et la clarté des mécaniques. Chaque tour et chaque ennemi ont été pensés pour encourager l’expérimentation et la planification à long terme.\n\nSon esthétique néon, combinée à une interface épurée, propose une expérience de jeu sobre et fluide, où la gestion et la précision priment sur la frénésie. Réalisé dans le cadre du Master MAPI MAJE, 3DefenZ explore les fondamentaux du game design de défense en alliant accessibilité et rigueur technique.",
             images: [
