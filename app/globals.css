@@ -109,4 +109,9 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Hide reCAPTCHA v2 Invisible badge (legal notice displayed in form) */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
  

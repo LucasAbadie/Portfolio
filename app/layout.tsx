@@ -57,6 +57,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
+            <head>
+                {/* Google reCAPTCHA v2 Invisible script */}
+                <script
+                    src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
+                    async
+                    defer
+                ></script>
+            </head>
             <body
                 className={`${inter.className} bg-black`}
             >

@@ -11,6 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@emotion/is-prop-valid": "latest",
     "clsx": "^2.1.1",
     "framer-motion": "latest",

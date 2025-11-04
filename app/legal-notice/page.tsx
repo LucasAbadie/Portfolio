@@ -113,16 +113,118 @@ Toute reproduction, distribution, modification ou utilisation, même partielle, 
 
                     <div>
                         <h3 className="text-2xl text-white/80 font-semibold mt-10 mb-4">
-                            6. Liens externes
+                            6. Protection anti-spam - Google reCAPTCHA
+                        </h3>
+                        <p className="mb-4">
+                            Notre formulaire de contact utilise <span className="text-white font-semibold">Google reCAPTCHA v2 Invisible</span> pour se protéger contre les soumissions automatisées (spam et bots).
+                        </p>
+                        
+                        <h4 className="text-lg text-white/90 font-semibold mt-6 mb-3">
+                            Données collectées par reCAPTCHA
+                        </h4>
+                        <p className="mb-2">Lors de l'utilisation du formulaire de contact, Google collecte :</p>
+                        <ul className="list-disc list-inside space-y-2 ml-4 mb-4">
+                            <li>Adresse IP</li>
+                            <li>Cookies de navigation</li>
+                            <li>Interactions avec le site (mouvements de souris, clics, temps de navigation)</li>
+                            <li>Informations techniques (User-Agent, résolution d'écran, plugins installés)</li>
+                            <li>Historique de navigation (si connecté à un compte Google)</li>
+                        </ul>
+                        
+                        <h4 className="text-lg text-white/90 font-semibold mt-6 mb-3">
+                            Finalité du traitement
+                        </h4>
+                        <p className="mb-4">
+                            Ces données sont analysées par Google pour déterminer si vous êtes un utilisateur humain et protéger notre site contre les abus, le spam et les activités malveillantes.
+                        </p>
+                        
+                        <h4 className="text-lg text-white/90 font-semibold mt-6 mb-3">
+                            Base légale
+                        </h4>
+                        <p className="mb-4">
+                            <span className="text-white font-semibold">Intérêt légitime</span> (Article 6.1.f du RGPD) - Sécurité et protection de notre site web contre les abus.
+                        </p>
+                        
+                        <h4 className="text-lg text-white/90 font-semibold mt-6 mb-3">
+                            Durée de conservation
+                        </h4>
+                        <p className="mb-4">
+                            Les données sont conservées par Google conformément à sa&nbsp;
+                            <a
+                                href="https://policies.google.com/privacy"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white hover:text-white/70 transition-colors underline"
+                            >
+                                Politique de confidentialité
+                            </a>.
+                        </p>
+                        
+                        <h4 className="text-lg text-white/90 font-semibold mt-6 mb-3">
+                            Vos droits
+                        </h4>
+                        <p className="mb-4">
+                            Pour exercer vos droits concernant les données collectées par reCAPTCHA, veuillez consulter les&nbsp;
+                            <a
+                                href="https://policies.google.com/terms"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white hover:text-white/70 transition-colors underline"
+                            >
+                                Conditions d'utilisation de Google
+                            </a>
+                            &nbsp;et contacter Google directement.
+                        </p>
+                        
+                        <h4 className="text-lg text-white/90 font-semibold mt-6 mb-3">
+                            En savoir plus
+                        </h4>
+                        <ul className="list-disc list-inside space-y-2 ml-4">
+                            <li>
+                                <a
+                                    href="https://policies.google.com/privacy"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-white hover:text-white/70 transition-colors underline"
+                                >
+                                    Politique de confidentialité de Google
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://policies.google.com/terms"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-white hover:text-white/70 transition-colors underline"
+                                >
+                                    Conditions d'utilisation de Google
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://developers.google.com/recaptcha"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-white hover:text-white/70 transition-colors underline"
+                                >
+                                    Documentation Google reCAPTCHA
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 className="text-2xl text-white/80 font-semibold mt-10 mb-4">
+                            7. Liens externes
                         </h3>
                         <p>
-                            Le site peut contenir des liens vers d’autres sites internet. L’éditeur décline toute responsabilité quant au contenu de ces sites tiers.
+                            Le site peut contenir des liens vers d'autres sites internet. L'éditeur décline toute responsabilité quant au contenu de ces sites tiers.
                         </p>
                     </div>
 
                     <div>
                         <h3 className="text-2xl text-white/80 font-semibold mt-10 mb-4">
-                            7. Droit applicable
+                            8. Droit applicable
                         </h3>
                         <p>
                             Les présentes mentions légales sont régies par le droit français.
