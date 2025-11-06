@@ -2,17 +2,22 @@
 
 import { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
-import Navbar from "@/components/navbar";
-import Hero from "@/components/hero";
-import NoiseBackground from "@/components/noise-background";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Home/Hero";
+import NoiseBackground from "@/components/NoiseBackground";
 
-// Scroll restoration component
+/**
+ * Scroll Restoration Component
+ *
+ * Ensures the page always loads at the top position.
+ * Disables browser's automatic scroll restoration to prevent unwanted scrolling.
+ */
 const ScrollRestoration = () => {
   useEffect(() => {
-    // Set scroll to top
+    // Force scroll to top on mount
     window.scrollTo(0, 0);
 
-    // Disable browser's automatic scroll restoration
+    // Disable browser's built-in scroll restoration
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
@@ -30,22 +35,24 @@ const ScrollRestoration = () => {
   return null;
 };
 
-// Lazy load components
-const Features = dynamic(() => import("@/components/features"));
+/**
+ * Lazy-loaded Components
+ * These components are loaded only when needed to improve initial page load performance
+ */
+const About = dynamic(() => import("@/components/Home/About"));
+const Spotlight = dynamic(() => import("@/components/Home/Spotlight"));
+const Career = dynamic(() => import("@/components/Home/Career"));
+const Contact = dynamic(() => import("@/components/Home/Contact"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
-const Work = dynamic(() => import("@/components/work"));
-
-const Process = dynamic(() => import("@/components/process"));
-
-const Testimonials = dynamic(() => import("@/components/testimonials"));
-
-const Pricing = dynamic(() => import("@/components/pricing"));
-
-const Contact = dynamic(() => import("@/components/contact"));
-
-const Footer = dynamic(() => import("@/components/footer"));
-
-// LazyLoad wrapper component
+/**
+ * LazyLoad Wrapper Component
+ *
+ * Uses Intersection Observer API to render children only when they enter the viewport.
+ * Improves performance by deferring rendering of below-the-fold content.
+ *
+ * @param children - Content to lazy load
+ */
 function LazyLoad({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -58,7 +65,7 @@ function LazyLoad({ children }: { children: React.ReactNode }) {
           obs.disconnect();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "200px" }, // Start loading 200px before element enters viewport
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
@@ -67,33 +74,51 @@ function LazyLoad({ children }: { children: React.ReactNode }) {
   return <div ref={ref}>{inView ? children : null}</div>;
 }
 
+/**
+ * Home Page Component
+ *
+ * Main landing page showcasing portfolio sections:
+ * - Hero: Introduction and branding
+ * - About: Personal presentation and values
+ * - Spotlight: Featured projects
+ * - Career: Professional timeline
+ * - Contact: Contact form with reCAPTCHA
+ *
+ * Implements lazy loading for performance optimization.
+ */
 export default function Home() {
   return (
-    <main className="bg-black text-white min-h-[7500px]">
+    <main className="bg-black text-white">
       <ScrollRestoration />
       <NoiseBackground />
-      <Navbar />
+      <Navbar
+        links={[
+          { href: "#about", label: "À Propos" },
+          { href: "#spotlight", label: "Spotlight" },
+          { href: "#career", label: "Parcours Professionel" },
+        ]}
+      />
       <Hero />
       <LazyLoad>
-        <Features />
+        <About />
       </LazyLoad>
       <LazyLoad>
-        <Work />
+        <Spotlight />
       </LazyLoad>
       <LazyLoad>
-        <Process />
-      </LazyLoad>
-      <LazyLoad>
-        <Testimonials />
-      </LazyLoad>
-      <LazyLoad>
-        <Pricing />
+        <Career />
       </LazyLoad>
       <LazyLoad>
         <Contact />
       </LazyLoad>
       <LazyLoad>
-        <Footer />
+        <Footer
+          links={[
+            { href: "#about", label: "À Propos" },
+            { href: "#spotlight", label: "Spotlight" },
+            { href: "#career", label: "Parcours Professionel" },
+          ]}
+        />
       </LazyLoad>
     </main>
   );

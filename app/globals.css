@@ -33,7 +33,9 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
@@ -54,7 +56,9 @@
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s;
+    transition:
+      width 0.2s,
+      height 0.2s;
   }
 
   .custom-cursor.active {
@@ -109,4 +113,8 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
- 
+
+/* Hide reCAPTCHA v2 Invisible badge (legal notice displayed in form) */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
