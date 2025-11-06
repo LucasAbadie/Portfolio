@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Linkedin, Github } from "lucide-react";
-import { emailConfig, recaptchaConfig } from '@/lib/env';
+import { emailConfig, recaptchaConfig } from "@/lib/env";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ export default function Contact() {
             year: currentYear,
             "g-recaptcha-response": token,
           },
-          emailConfig.publicKey
+          emailConfig.publicKey,
         ),
         // Second mail (auto-reply to sender)
         /* emailjs.send(
@@ -136,7 +136,7 @@ export default function Contact() {
       if (recaptchaWidgetId.current !== null && typeof window.grecaptcha !== "undefined") {
         try {
           window.grecaptcha.reset(recaptchaWidgetId.current);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (e) {
           // Ignore cleanup errors
         }

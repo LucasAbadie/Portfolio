@@ -80,7 +80,7 @@ export default function Spotlight() {
           {spotlights.map((project, index) => (
             <Link
               key={index}
-              href={`/projects/${  project.id}`}
+              href={`/projects/${project.id}`}
               className="group cursor-pointer"
               onMouseEnter={() => setActiveIndex(index)}
             >
@@ -88,7 +88,7 @@ export default function Spotlight() {
                 <Image
                   src={
                     project.banner
-                      ? `${project.banner  }?height=600&width=800`
+                      ? `${project.banner}?height=600&width=800`
                       : "/assets/placeholder.svg"
                   }
                   alt={project.name}

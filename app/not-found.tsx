@@ -10,7 +10,7 @@ export default function NotFound() {
     <main className="bg-black text-white min-h-screen flex flex-col">
       <NoiseBackground />
       <Navbar />
-      
+
       {/* 404 Section */}
       <section className="flex-1 flex items-center justify-center py-24 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-8 relative text-center">
@@ -30,7 +30,7 @@ export default function NotFound() {
               </div>
               <div className="h-px w-12 bg-white/40"></div>
             </div>
-            
+
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6">
               Oups !
               <br />
@@ -38,7 +38,8 @@ export default function NotFound() {
             </h2>
 
             <p className="text-lg text-white/60 max-w-md mx-auto mb-12">
-              La page que vous recherchez a peut-être été déplacée, supprimée ou n&apos;a jamais existé.
+              La page que vous recherchez a peut-être été déplacée, supprimée ou n&apos;a jamais
+              existé.
             </p>
 
             {/* CTA Buttons */}

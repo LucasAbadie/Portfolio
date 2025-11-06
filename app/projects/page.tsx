@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import { projects } from "@/data/Projects";
 
 export default function Projects() {
-
   return (
     <main className="bg-black text-white">
       <NoiseBackground />
@@ -35,11 +34,7 @@ export default function Projects() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <Link
-                key={index}
-                href={`/projects/${  project.id}`}
-                className="group cursor-pointer"
-              >
+              <Link key={index} href={`/projects/${project.id}`} className="group cursor-pointer">
                 <div className="relative aspect-[4/3] overflow-hidden border-2 border-white/20 mb-4 group-hover:border-white/50 transition-all duration-300">
                   <Image
                     src={project.banner || "/assets/placeholder.svg"}

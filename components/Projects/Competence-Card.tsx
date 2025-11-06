@@ -7,11 +7,7 @@ interface CompetenceCardProps {
   skills: string[];
 }
 
-export default function CompetenceCard({
-  icon: Icon,
-  title,
-  skills,
-}: CompetenceCardProps) {
+export default function CompetenceCard({ icon: Icon, title, skills }: CompetenceCardProps) {
   return (
     <div color="transparent">
       <div className="grid justify-start">
