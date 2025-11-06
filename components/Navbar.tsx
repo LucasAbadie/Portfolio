@@ -9,6 +9,18 @@ type NavbarProps = {
   links?: { label: string; href: string }[];
 };
 
+/**
+ * Navbar Component
+ *
+ * Fixed navigation bar with responsive design.
+ * Features:
+ * - Transparent background that becomes opaque on scroll
+ * - Desktop: Horizontal navigation links
+ * - Mobile: Hamburger menu with slide-down navigation
+ * - Smooth transitions and backdrop blur effect
+ *
+ * @param links - Navigation links (optional, defaults to empty array)
+ */
 export default function Navbar({ links = [] }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -34,7 +46,7 @@ export default function Navbar({ links = [] }: NavbarProps) {
             LUCAS A<span className="text-neutral-400">.</span>
           </Link>
 
-          {/* Links container */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center space-x-8">
             {links.map((link, i) => (
               <Link
@@ -47,6 +59,7 @@ export default function Navbar({ links = [] }: NavbarProps) {
             ))}
           </nav>
 
+          {/* Desktop CTA Button */}
           <div className="hidden md:block">
             <Link
               href="/#contact"
@@ -56,14 +69,14 @@ export default function Navbar({ links = [] }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle Button */}
           <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu - Animated slide-down */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}

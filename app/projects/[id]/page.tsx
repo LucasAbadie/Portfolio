@@ -12,6 +12,21 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
+/**
+ * Dynamic Project Page
+ *
+ * Displays detailed information about a specific project.
+ * URL pattern: /projects/[id]
+ *
+ * Sections:
+ * - Hero: Project banner, title, description, and links
+ * - VideoIntro: Optional YouTube video showcase
+ * - Gallery: Project screenshots with lightbox
+ * - Competences: Technical skills and contributions
+ *
+ * Static generation: All project pages are pre-rendered at build time
+ * using generateStaticParams()
+ */
 export default async function ProjectPage({ params }: Props) {
   const { id } = await params;
 
@@ -31,7 +46,7 @@ export default async function ProjectPage({ params }: Props) {
         ]}
       />
 
-      {/* TODO: Animate this section */}
+      {/* TODO: Add scroll-triggered animations for sections */}
       <Hero
         Name={project.name}
         Description={project.description}
@@ -55,7 +70,14 @@ export default async function ProjectPage({ params }: Props) {
   );
 }
 
-// 👉 Next.js a besoin de ça pour générer les pages statiques
+/**
+ * Generate Static Params
+ *
+ * Tells Next.js which project pages to pre-render at build time.
+ * This is required for static export (output: "export" in next.config.js).
+ *
+ * @returns Array of params objects with project IDs
+ */
 export function generateStaticParams() {
   return projects.map((project) => ({
     id: project.id.toString(),

@@ -2,102 +2,134 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 
+/**
+ * Floating Cursor Component
+ *
+ * Custom cursor implementation with two elements:
+ * - Dot: Small white circle that follows the mouse instantly
+ * - Circle: Larger ring that follows with smooth easing
+ *
+ * Features:
+ * - Smooth animation using requestAnimationFrame
+ * - Click animation (shrinks on click)
+ * - Hover animation on links/buttons (enlarges)
+ * - Handles tab visibility and focus changes
+ * - Disabled on mobile devices
+ *
+ * Performance optimizations:
+ * - Uses refs to avoid re-renders
+ * - Pauses animation when tab is hidden
+ * - Properly cleans up animation frames
+ */
 export default function FloatingCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const [clicked, setClicked] = useState(false);
   const [linkHovered, setLinkHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const positionRef = useRef({ x: 0, y: 0 }); // Target position (follows mouse instantly)
-  const circlePositionRef = useRef({ x: 0, y: 0 }); // Animated position (follows target smoothly)
+
+  /** Target position - follows mouse instantly */
+  const positionRef = useRef({ x: 0, y: 0 });
+  /** Animated position - follows target with smooth easing */
+  const circlePositionRef = useRef({ x: 0, y: 0 });
   const requestRef = useRef<number | null>(null);
 
-  // Animation function remains the same
+  /**
+   * Animation loop using requestAnimationFrame
+   * Applies smooth easing to circle movement (15% interpolation)
+   */
   const animateCursor = useCallback(() => {
     if (!circleRef.current || !dotRef.current || !mounted) return;
 
-    // Smooth circle movement towards target position
+    // Smooth circle movement with easing (15% interpolation)
     circlePositionRef.current.x += (positionRef.current.x - circlePositionRef.current.x) * 0.15;
     circlePositionRef.current.y += (positionRef.current.y - circlePositionRef.current.y) * 0.15;
     circleRef.current.style.transform = `translate3d(${circlePositionRef.current.x}px, ${circlePositionRef.current.y}px, 0) translate(-50%, -50%) scale(${clicked ? 0.8 : 1})`;
 
-    // Direct dot movement to target position
+    // Dot follows mouse instantly (no easing)
     dotRef.current.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0) translate(-50%, -50%)`;
 
     requestRef.current = requestAnimationFrame(animateCursor);
-  }, [clicked, mounted]); // Add mounted dependency
+  }, [clicked, mounted]);
 
-  // Reset function - prioritizes event coords, then last known target coords
+  /**
+   * Reset cursor position (used when teleporting cursor or restarting animation)
+   * Prioritizes event coordinates if provided, otherwise uses last known position
+   */
   const resetCursorPosition = useCallback(
     (e?: MouseEvent) => {
       if (!mounted) return;
 
-      // Stop any ongoing animation frame
+      // Stop current animation
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current);
-        requestRef.current = null; // Mark as stopped
+        requestRef.current = null;
       }
 
-      // Determine position: event coords > last known target > center (initial fallback)
+      // Determine position: event coords > last known > center fallback
       let x, y;
       if (e) {
         x = e.clientX;
         y = e.clientY;
       } else {
-        // Use last known target position if non-zero, otherwise center
         x = positionRef.current.x || window.innerWidth / 2;
         y = positionRef.current.y || window.innerHeight / 2;
       }
 
-      // Update target position ref
+      // Update both position refs to match
       positionRef.current = { x, y };
-      // Immediately update visual position refs to match target
       circlePositionRef.current = { x, y };
 
-      // Apply transform immediately to both elements
+      // Apply transforms immediately
       if (dotRef.current)
         dotRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
       if (circleRef.current)
         circleRef.current.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${clicked ? 0.8 : 1})`;
 
-      // Restart animation loop
+      // Restart animation
       requestRef.current = requestAnimationFrame(animateCursor);
     },
     [mounted, animateCursor, clicked],
-  ); // Dependencies
+  );
 
-  // Main effect for listeners and initialization
+  /**
+   * Main effect: Initialize cursor and set up event listeners
+   */
   useEffect(() => {
     setMounted(true);
 
-    // Initialize positions (only truly needed if no mouse move happens first)
+    // Initialize cursor at center if no position set
     const initialX = window.innerWidth / 2;
     const initialY = window.innerHeight / 2;
     if (positionRef.current.x === 0 && positionRef.current.y === 0) {
       positionRef.current = { x: initialX, y: initialY };
     }
-    // Ensure visual position starts where target is
     circlePositionRef.current = { x: positionRef.current.x, y: positionRef.current.y };
 
+    // Apply initial transforms
     if (dotRef.current)
       dotRef.current.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0) translate(-50%, -50%)`;
     if (circleRef.current)
       circleRef.current.style.transform = `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0) translate(-50%, -50%)`;
 
-    // Update target position on mouse move
+    /**
+     * Update target position on mouse move
+     */
     const updatePosition = (e: MouseEvent) => {
       positionRef.current = { x: e.clientX, y: e.clientY };
     };
 
-    // Reset cursor only if visual position is far from click
+    /**
+     * Handle click - reset position if cursor has drifted too far
+     */
     const handleMouseDown = (e: MouseEvent) => {
       setClicked(true);
-      // Check distance between *animated* circle and actual click
+      // Calculate distance between animated circle and click position
       const dx = circlePositionRef.current.x - e.clientX;
       const dy = circlePositionRef.current.y - e.clientY;
+      // Reset if visual distance > 30px to prevent jarring jumps
       if (Math.sqrt(dx * dx + dy * dy) > 30) {
-        // Reset if visual distance > 30px
-        resetCursorPosition(e); // Use click event coords for reset
+        resetCursorPosition(e);
       }
     };
 
@@ -105,37 +137,43 @@ export default function FloatingCursor() {
     const handleMouseEnterLink = () => setLinkHovered(true);
     const handleMouseLeaveLink = () => setLinkHovered(false);
 
-    // Function to ensure animation is running (used on focus/visibility)
+    /**
+     * Ensure animation is running (used on focus/visibility)
+     */
     const ensureAnimationRunning = () => {
-      // If animation isn't running, restart it from last known position
       if (mounted && !requestRef.current) {
-        resetCursorPosition(); // Uses last known positionRef coords
+        resetCursorPosition();
       }
     };
 
-    // Handle visibility change
+    /**
+     * Handle tab visibility changes - pause when hidden to save resources
+     */
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
         ensureAnimationRunning();
       } else {
-        // Pause animation when hidden
         if (requestRef.current) cancelAnimationFrame(requestRef.current);
-        requestRef.current = null; // Mark as paused
+        requestRef.current = null;
       }
     };
-    // Handle focus gain
+
     const handleFocus = () => ensureAnimationRunning();
 
-    // Reset on mouse entering window (use event coords)
+    /**
+     * Reset cursor position when mouse enters window
+     */
     const handleMouseEnterWindow = (e: MouseEvent) => resetCursorPosition(e);
 
-    // Pause animation on mouse leave or blur
+    /**
+     * Pause animation to save resources
+     */
     const pauseAnimation = () => {
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
-      requestRef.current = null; // Mark as paused
+      requestRef.current = null;
     };
 
-    // Add listeners
+    // Register event listeners
     window.addEventListener("mousemove", updatePosition);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
@@ -145,13 +183,14 @@ export default function FloatingCursor() {
     document.documentElement.addEventListener("mouseenter", handleMouseEnterWindow);
     document.documentElement.addEventListener("mouseleave", pauseAnimation);
 
+    // Add hover listeners to all links and buttons
     const links = document.querySelectorAll("a, button");
     links.forEach((link) => {
       link.addEventListener("mouseenter", handleMouseEnterLink);
       link.addEventListener("mouseleave", handleMouseLeaveLink);
     });
 
-    // Start animation initially
+    // Start animation loop
     requestRef.current = requestAnimationFrame(animateCursor);
 
     // Cleanup
@@ -171,12 +210,14 @@ export default function FloatingCursor() {
         link.removeEventListener("mouseenter", handleMouseEnterLink);
         link.removeEventListener("mouseleave", handleMouseLeaveLink);
       });
-      // Set mounted to false on unmount
+
       setMounted(false);
     };
-  }, [animateCursor, resetCursorPosition]); // Dependencies
+  }, [animateCursor, resetCursorPosition]);
 
-  // Effect for updating circle style based on state
+  /**
+   * Update circle size and border based on interaction state
+   */
   useEffect(() => {
     if (!circleRef.current) return;
 
@@ -186,12 +227,12 @@ export default function FloatingCursor() {
     circleRef.current.style.border = `1px solid ${clicked ? "rgba(255,255,255,0.5)" : "white"}`;
   }, [linkHovered, clicked]);
 
-  // Only render on client-side
+  // Client-side only rendering
   if (!mounted) return null;
 
   return (
     <>
-      {/* Inner dot */}
+      {/* Inner dot - follows mouse instantly */}
       <div
         ref={dotRef}
         className="cursor-dot fixed pointer-events-none z-[9999]"
@@ -208,7 +249,7 @@ export default function FloatingCursor() {
         }}
       />
 
-      {/* Outer circle */}
+      {/* Outer circle - follows with smooth easing */}
       <div
         ref={circleRef}
         className="cursor-circle fixed pointer-events-none z-[9998]"
@@ -220,7 +261,7 @@ export default function FloatingCursor() {
           border: "1px solid white",
           borderRadius: "50%",
           transform: "translate3d(0px, 0px, 0) translate(-50%, -50%)",
-          transition: "width 0.2s ease, height 0.2s ease, border 0.2s ease", // Added transition for smoother size/border changes
+          transition: "width 0.2s ease, height 0.2s ease, border 0.2s ease",
         }}
       />
 
@@ -229,6 +270,7 @@ export default function FloatingCursor() {
           cursor: none;
         }
 
+        /* Disable custom cursor on mobile/tablet */
         @media (max-width: 768px) {
           body {
             cursor: auto;

@@ -7,48 +7,32 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { projects } from "@/data/Projects";
 
+/**
+ * Spotlight Section Component
+ *
+ * Showcases featured/highlighted projects on the home page.
+ * Displays a curated selection of 4 key projects in a 2x2 grid.
+ *
+ * Features:
+ * - Grayscale-to-color hover effect on images
+ * - Smooth scale animation on hover
+ * - Year badge on each project card
+ * - Active index tracking (prepared for future carousel implementation)
+ *
+ * Projects are hardcoded by index from the projects array:
+ * - projects[4], [2], [1], [7] are currently featured
+ */
 export default function Spotlight() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const spotlights = [
-    projects[4],
-    projects[2],
-    projects[1],
-    projects[7],
-    /* {
-            title: "RecovR",
-            subtitle: "The Seed Crew",
-            image: "/assets/projects/RecovR/RecovR.webp?height=600&width=800",
-            year: "2019 - 2023",
-            link: "/projects/recovr",
-        },
-        {
-            title: "Day Off",
-            subtitle: "The Seed Crew",
-            image: "/assets/projects/DayOff/DayOff.webp?height=600&width=800",
-            year: "2023 - 2024",
-            link: "/projects/dayoff",
-        },
-        {
-            title: "Sifter",
-            subtitle: "Jeu PC",
-            image: "",
-            year: "2025",
-            link: "/projects/sifter",
-        },
-        {
-            title: "Perfect Match",
-            subtitle: "Jeu Mobile",
-            image: "/assets/projects/PerfectMatch/PerfectMatch.webp?height=600&width=800",
-            year: "2017-2018",
-            link: "/projects/perfect-match",
-        }, */
-  ];
+  /** Featured projects selection (by index from projects array) */
+  const spotlights = [projects[4], projects[2], projects[1], projects[7]];
 
   return (
     <section id="spotlight" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +42,7 @@ export default function Spotlight() {
         >
           <div className="flex items-center gap-4 mb-6">
             <div className="h-px w-12 bg-white/40"></div>
-            <div className="text-xs uppercase tracking-widest text-white/80">À l’honneur</div>
+            <div className="text-xs uppercase tracking-widest text-white/80">À l'honneur</div>
           </div>
           <div className="flex flex-col md:flex-row md:items-end justify-between">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 md:mb-0 text-white">
@@ -76,6 +60,7 @@ export default function Spotlight() {
           </div>
         </motion.div>
 
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {spotlights.map((project, index) => (
             <Link
@@ -84,6 +69,7 @@ export default function Spotlight() {
               className="group cursor-pointer"
               onMouseEnter={() => setActiveIndex(index)}
             >
+              {/* Project Card */}
               <div className="relative aspect-[4/3] overflow-hidden border-2 border-white/20 mb-4 group-hover:border-white/50 transition-all duration-300">
                 <Image
                   src={
@@ -97,12 +83,12 @@ export default function Spotlight() {
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
 
-                {/* Year badge with improved visibility */}
+                {/* Year Badge */}
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1 text-xs uppercase tracking-widest text-white/90 border border-white/20">
                   {project.date}
                 </div>
 
-                {/* Overlay content that appears on hover */}
+                {/* Hover Overlay */}
                 <div className="absolute bottom-0 left-0 w-full p-4 bg-black/60 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <div className="text-xs uppercase tracking-widest text-white/80 mb-1">
                     Voir le projet
@@ -110,22 +96,23 @@ export default function Spotlight() {
                 </div>
               </div>
 
-              {/* Project title with enhanced styling */}
+              {/* Project Title */}
               <h3 className="text-2xl font-bold tracking-tighter text-white group-hover:translate-x-2 transition-transform duration-300">
                 {project.name}
               </h3>
+              {/* TODO: Add project.description or project.categories display here */}
               <p className="text-white/70 group-hover:text-white/90 transition-colors">
-                {/* TODO find variable & content */}
+                {/* TODO :Placeholder for subtitle/category */}
               </p>
 
-              {/* Animated underline on hover */}
+              {/* Animated Underline */}
               <div className="h-px w-0 bg-white group-hover:w-20 transition-all duration-300 mt-2"></div>
             </Link>
           ))}
         </div>
       </div>
 
-      {/* Decorative elements */}
+      {/* Decorative Elements */}
       <div className="absolute top-20 right-20 w-32 h-32 border border-white/10"></div>
       <div className="absolute bottom-20 left-20 w-48 h-48 border border-white/5"></div>
     </section>

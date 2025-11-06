@@ -1,26 +1,47 @@
+/**
+ * Project Data Type Definition
+ *
+ * Represents a portfolio project with all its associated metadata and content.
+ */
 export type Project = {
+  /** Unique identifier for the project (used in URLs) */
   id: string;
+  /** Project display name */
   name: string;
+  /** Short description for cards and listings */
   description: string;
+  /** Category tags for filtering and classification */
   categories: string[];
+  /** Whether this is a professional/commercial project */
   isProfessional?: boolean;
+  /** Company/Organization information if applicable */
   enterprise?: {
     name: string;
     url: string;
     role?: string;
   };
+  /** Project date or date range */
   date?: string;
+  /** Path to banner/preview image */
   banner: string;
+  /** Live demo/project URL */
   url?: string;
+  /** GitHub repository URL */
   githubUrl?: string;
+  /** Detailed project content */
   content: {
+    /** Full project description and context */
     pitch: string;
+    /** YouTube video URL (optional) */
     video?: string;
+    /** Gallery images */
     images: {
       url: string;
       alt?: string;
     }[];
+    /** Technical contribution description */
     technicalContribution: string;
+    /** Skills and competencies developed */
     competences: {
       title: string;
       subtitle?: string;
@@ -29,7 +50,12 @@ export type Project = {
   };
 };
 
-// TODO: fill the projects
+/**
+ * Portfolio Projects Database
+ *
+ * Complete collection of all portfolio projects.
+ * Projects are displayed in order on the projects page.
+ */
 export const projects: Project[] = [
   {
     id: "toon-tanks",

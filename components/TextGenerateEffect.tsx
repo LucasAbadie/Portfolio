@@ -3,7 +3,21 @@ import { useEffect, memo, ReactNode } from "react";
 import { motion, stagger, useAnimate } from "motion/react";
 import { cn } from "@/lib/utils";
 
-// Memoize the component to prevent unnecessary re-renders
+/**
+ * Text Generation Effect Component
+ *
+ * Creates a typewriter-like animation effect for text content.
+ * Words appear one by one with a stagger animation and optional blur effect.
+ *
+ * Memoized to prevent unnecessary re-renders when parent components update.
+ *
+ * @param words - Text to animate (will be split by spaces)
+ * @param className - Additional CSS classes
+ * @param filter - Whether to apply blur-to-clear effect (default: true)
+ * @param duration - Animation duration per word in seconds (default: 0.5)
+ * @param speed - Stagger delay between words in seconds (default: 0.2)
+ * @param initialDelay - Delay before animation starts in seconds (default: 0)
+ */
 export const TextGenerateEffect = memo(
   ({
     words,
@@ -11,20 +25,21 @@ export const TextGenerateEffect = memo(
     filter = true,
     duration = 0.5,
     speed = 0.2,
-    initialDelay = 0, // New param: initial delay before animation starts
+    initialDelay = 0,
   }: {
     words: string;
     className?: string;
     filter?: boolean;
     duration?: number;
     speed?: number;
-    initialDelay?: number; // Initial delay in seconds
+    initialDelay?: number;
   }) => {
     const [scope, animate] = useAnimate();
-    const wordsArray = words.split(" ").slice(0, 30); // Limit words to avoid excessive DOM
+    // Limit to 30 words to prevent excessive DOM nodes and ensure performance
+    const wordsArray = words.split(" ").slice(0, 30);
 
     useEffect(() => {
-      // Add initial delay before starting the animation
+      // Delay animation start if specified
       const timer = setTimeout(() => {
         animate(
           "span",
@@ -37,7 +52,7 @@ export const TextGenerateEffect = memo(
             delay: stagger(speed),
           },
         );
-      }, initialDelay * 1000); // Convert to milliseconds
+      }, initialDelay * 1000);
 
       return () => clearTimeout(timer);
     }, [scope.current, animate, duration, filter, speed, initialDelay]);
