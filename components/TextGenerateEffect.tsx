@@ -4,7 +4,7 @@ import { motion, stagger, useAnimate } from "motion/react";
 import { cn } from "@/lib/utils";
 
 // Memoize the component to prevent unnecessary re-renders
-export const TextGenerateEffect = memo(function TextGenerateEffect({
+export const TextGenerateEffect = memo(({
   words,
   className,
   filter = true,
@@ -18,7 +18,7 @@ export const TextGenerateEffect = memo(function TextGenerateEffect({
   duration?: number;
   speed?: number;
   initialDelay?: number; // Initial delay in seconds
-}) {
+}) => {
   const [scope, animate] = useAnimate();
   const wordsArray = words.split(" ").slice(0, 30); // Limit words to avoid excessive DOM
 
@@ -80,7 +80,7 @@ export const TextGenerateEffect = memo(function TextGenerateEffect({
 });
 
 // New component for content with text generation effect
-export const ContentGenerateEffect = memo(function ContentGenerateEffect({
+export const ContentGenerateEffect = memo(({
   children,
   className,
   initialDelay = 0,
@@ -92,7 +92,7 @@ export const ContentGenerateEffect = memo(function ContentGenerateEffect({
   initialDelay?: number;
   speed?: number;
   staggerChildren?: number;
-}) {
+}) => {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {

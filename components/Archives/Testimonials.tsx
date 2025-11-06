@@ -33,6 +33,7 @@ export default function Testimonials() {
   };
 
   const prev = () => {
+    // eslint-disable-next-line no-shadow
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 

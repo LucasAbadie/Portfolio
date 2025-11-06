@@ -8,6 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { projects } from "@/data/Projects";
 
 export default function Spotlight() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeIndex, setActiveIndex] = useState(0);
 
   const spotlights = [
@@ -79,7 +80,7 @@ export default function Spotlight() {
           {spotlights.map((project, index) => (
             <Link
               key={index}
-              href={"/projects/" + project.id}
+              href={`/projects/${  project.id}`}
               className="group cursor-pointer"
               onMouseEnter={() => setActiveIndex(index)}
             >
@@ -87,7 +88,7 @@ export default function Spotlight() {
                 <Image
                   src={
                     project.banner
-                      ? project.banner + "?height=600&width=800"
+                      ? `${project.banner  }?height=600&width=800`
                       : "/assets/placeholder.svg"
                   }
                   alt={project.name}

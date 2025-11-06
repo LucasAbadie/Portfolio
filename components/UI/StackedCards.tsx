@@ -56,7 +56,8 @@ export default function StackedCards({ cards, width = 340, height = 480, maxVisi
   function cycleTopToBack() {
     if (stack.length <= 1) return;
     const next = [...stack];
-    const top = next.shift()!; // remove first card
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const top = next.shift()!; // remove first card (safe because stack.length > 1)
     next.push(top); // put it at the end
     setStack(next);
   }

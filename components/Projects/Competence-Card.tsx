@@ -10,7 +10,6 @@ interface CompetenceCardProps {
 export default function CompetenceCard({
   icon: Icon,
   title,
-  subtitle,
   skills,
 }: CompetenceCardProps) {
   return (

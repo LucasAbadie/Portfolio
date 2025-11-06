@@ -7,10 +7,10 @@ export default function NoiseBackground() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return undefined;
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) return undefined;
 
     // Set canvas dimensions
     const setCanvasDimensions = () => {
@@ -38,7 +38,7 @@ export default function NoiseBackground() {
     };
 
     // Animation loop
-    let animationFrameId: number;
+    let animationFrameId: number | undefined;
     const render = () => {
       createNoise();
       animationFrameId = window.requestAnimationFrame(render);
@@ -47,7 +47,9 @@ export default function NoiseBackground() {
     render();
 
     return () => {
-      window.cancelAnimationFrame(animationFrameId);
+      if (animationFrameId !== undefined) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
       window.removeEventListener("resize", setCanvasDimensions);
     };
   }, []);

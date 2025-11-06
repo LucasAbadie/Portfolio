@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -10,7 +8,6 @@ import Footer from "@/components/Footer";
 import { projects } from "@/data/Projects";
 
 export default function Projects() {
-  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <main className="bg-black text-white">
@@ -40,9 +37,8 @@ export default function Projects() {
             {projects.map((project, index) => (
               <Link
                 key={index}
-                href={"/projects/" + project.id}
+                href={`/projects/${  project.id}`}
                 className="group cursor-pointer"
-                onMouseEnter={() => setActiveIndex(index)}
               >
                 <div className="relative aspect-[4/3] overflow-hidden border-2 border-white/20 mb-4 group-hover:border-white/50 transition-all duration-300">
                   <Image

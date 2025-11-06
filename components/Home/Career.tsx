@@ -1,12 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { url } from "inspector";
+import { motion } from "framer-motion";
 
 export default function Career() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const steps = [
     {
@@ -100,7 +98,7 @@ export default function Career() {
                   }`}
                 >
                   <a
-                    href={step.url || "#"}
+                    href={step.url ?? "#"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-white transition-colors group"

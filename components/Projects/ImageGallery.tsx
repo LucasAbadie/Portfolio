@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Pagination from "@/components/UI/Pagination";
@@ -35,9 +35,25 @@ export default function Gallery({ images }: GalleryProps) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  const closeModal = useCallback(() => setCurrentIndex(null), []);
+
+  const goNext = useCallback(() => {
+    if (currentIndex !== null) {
+      setDirection(1);
+      setCurrentIndex((currentIndex + 1) % images.length);
+    }
+  }, [currentIndex, images.length]);
+
+  const goPrev = useCallback(() => {
+    if (currentIndex !== null) {
+      setDirection(-1);
+      setCurrentIndex((currentIndex - 1 + images.length) % images.length);
+    }
+  }, [currentIndex, images.length]);
+
   // Support clavier pour le modal
   useEffect(() => {
-    if (currentIndex === null) return;
+    if (currentIndex === null) return undefined;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeModal();
@@ -47,7 +63,7 @@ export default function Gallery({ images }: GalleryProps) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex]);
+  }, [currentIndex, closeModal, goPrev, goNext]);
 
   // Bloquer le scroll quand le modal est ouvert
   useEffect(() => {
@@ -80,22 +96,6 @@ export default function Gallery({ images }: GalleryProps) {
     pagedImagesMobile.push(images.slice(i, i + IMAGES_PER_PAGE_MOBILE));
   }
 
-  const closeModal = () => setCurrentIndex(null);
-
-  const goNext = () => {
-    if (currentIndex !== null) {
-      setDirection(1);
-      setCurrentIndex((currentIndex + 1) % images.length);
-    }
-  };
-
-  const goPrev = () => {
-    if (currentIndex !== null) {
-      setDirection(-1);
-      setCurrentIndex((currentIndex - 1 + images.length) % images.length);
-    }
-  };
-
   // Variants pour les animations du modal
   const backdropVariants = {
     hidden: { opacity: 0 },
@@ -109,7 +109,7 @@ export default function Gallery({ images }: GalleryProps) {
       scale: 1,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 25,
         stiffness: 300,
       },
@@ -124,21 +124,21 @@ export default function Gallery({ images }: GalleryProps) {
   };
 
   const imageVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
+    enter: (dir: number) => ({
+      x: dir > 0 ? 1000 : -1000,
       opacity: 0,
     }),
     center: {
       x: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 300,
         damping: 30,
       },
     },
-    exit: (direction: number) => ({
-      x: direction > 0 ? -1000 : 1000,
+    exit: (dir: number) => ({
+      x: dir > 0 ? -1000 : 1000,
       opacity: 0,
       transition: {
         duration: 0.2,
@@ -170,8 +170,8 @@ export default function Gallery({ images }: GalleryProps) {
                 onClick={() => setCurrentIndex(index + pageIndex * IMAGES_PER_PAGE_MOBILE)}
               >
                 <Image
-                  src={src.url || "/assets/placeholder.svg"}
-                  alt={src.alt || `Image ${index + 1}`}
+                  src={src.url ?? "/assets/placeholder.svg"}
+                  alt={src.alt ?? `Image ${index + 1}`}
                   width={300}
                   height={200}
                   className="w-full h-[200px] object-cover"
@@ -211,8 +211,8 @@ export default function Gallery({ images }: GalleryProps) {
                 onClick={() => setCurrentIndex(index + pageIndex * IMAGES_PER_PAGE_DESKTOP)}
               >
                 <Image
-                  src={src.url || "/assets/placeholder.svg"}
-                  alt={src.alt || `Image ${index + 1}`}
+                  src={src.url ?? "/assets/placeholder.svg"}
+                  alt={src.alt ?? `Image ${index + 1}`}
                   width={500}
                   height={400}
                   className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-110"
@@ -306,8 +306,8 @@ export default function Gallery({ images }: GalleryProps) {
                     className="absolute"
                   >
                     <Image
-                      src={images[currentIndex].url || "/assets/placeholder.svg"}
-                      alt={images[currentIndex].alt || `Image ${currentIndex + 1}`}
+                      src={images[currentIndex].url ?? "/assets/placeholder.svg"}
+                      alt={images[currentIndex].alt ?? `Image ${currentIndex + 1}`}
                       width={1400}
                       height={900}
                       className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-xl shadow-2xl"

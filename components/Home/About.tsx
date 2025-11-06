@@ -46,33 +46,13 @@ export default function About() {
     },
   };
 
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 12,
-      scale: 0.98,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 45,
-        damping: 15,
-        mass: 0.85,
-        duration: 0.7,
-      },
-    },
-  };
-
   const titleVariants = {
     hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 50,
         damping: 12,
         duration: 0.6,

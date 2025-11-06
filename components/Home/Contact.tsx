@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Linkedin, Github } from "lucide-react";
+import { emailConfig, recaptchaConfig } from '@/lib/env';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -26,8 +27,8 @@ export default function Contact() {
       await Promise.all([
         // First mail (to me)
         emailjs.send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+          emailConfig.serviceId,
+          emailConfig.templateId,
           {
             name: formData.name,
             email: formData.email,
@@ -35,12 +36,12 @@ export default function Contact() {
             year: currentYear,
             "g-recaptcha-response": token,
           },
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+          emailConfig.publicKey
         ),
         // Second mail (auto-reply to sender)
         /* emailjs.send(
-                    process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-                    process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE_ID!,
+                    emailConfig.serviceId,
+                    emailConfig.autoReplyTemplateId,
                     {
                         name: formData.name,
                         email: formData.email,
@@ -48,7 +49,7 @@ export default function Contact() {
                         year: currentYear,
                         'g-recaptcha-response': token,
                     },
-                    process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+                    emailConfig.publicKey
                 ) */
       ]);
 
@@ -96,15 +97,10 @@ export default function Contact() {
         recaptchaWidgetId.current === null
       ) {
         try {
-          console.log(
-            "Initializing reCAPTCHA with site key:",
-            process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-          );
           recaptchaWidgetId.current = window.grecaptcha.render(recaptchaContainerRef.current, {
-            sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
+            sitekey: recaptchaConfig.siteKey,
             size: "invisible",
             callback: (token: string) => {
-              console.log("reCAPTCHA token received");
               // Token received, proceed with form submission
               if (recaptchaCallbackRef.current) {
                 recaptchaCallbackRef.current(token);
@@ -122,7 +118,6 @@ export default function Contact() {
               }
             },
           });
-          console.log("reCAPTCHA widget initialized with ID:", recaptchaWidgetId.current);
         } catch (error) {
           console.error("Error rendering reCAPTCHA:", error);
         }
@@ -131,10 +126,8 @@ export default function Contact() {
 
     // Wait for reCAPTCHA script to load
     if (typeof window.grecaptcha === "undefined") {
-      console.log("grecaptcha not loaded yet, setting onload callback");
       window.onRecaptchaLoad = initRecaptcha;
     } else {
-      console.log("grecaptcha already loaded, initializing");
       window.grecaptcha.ready(initRecaptcha);
     }
 
@@ -143,6 +136,7 @@ export default function Contact() {
       if (recaptchaWidgetId.current !== null && typeof window.grecaptcha !== "undefined") {
         try {
           window.grecaptcha.reset(recaptchaWidgetId.current);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (e) {
           // Ignore cleanup errors
         }

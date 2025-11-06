@@ -17,7 +17,6 @@ export default function Hero({
   Description,
   Categories = [],
   Pitch,
-  Banner,
   ProjectUrl,
   GithubUrl,
 }: HeroProjectProps) {

@@ -12,17 +12,6 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-function FormatPageTitle(str: string): string[] {
-  let arr = Array() as string[];
-  const midIndex: number = str.length / 2;
-  const firstSpaceAfterMid: number = str.indexOf(" ", midIndex);
-
-  arr.push(str.substring(0, firstSpaceAfterMid));
-  arr.push(str.substring(firstSpaceAfterMid + 1));
-
-  return arr;
-}
-
 export default async function ProjectPage({ params }: Props) {
   const { id } = await params;
 
@@ -31,8 +20,6 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) {
     return <div>Project not found</div>;
   }
-
-  const titleParts = FormatPageTitle(project.description);
 
   return (
     <main className="bg-black text-white">
