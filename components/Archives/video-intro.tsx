@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { PlayIcon } from "lucide-react";
 
-
 export function VideoIntro() {
   return (
     <div className="p-8">

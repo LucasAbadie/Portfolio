@@ -34,7 +34,7 @@ export const TextGenerateEffect = memo(function TextGenerateEffect({
         {
           duration: duration || 1,
           delay: stagger(speed),
-        }
+        },
       );
     }, initialDelay * 1000); // Convert to milliseconds
 
@@ -111,7 +111,7 @@ export const ContentGenerateEffect = memo(function ContentGenerateEffect({
           type: "spring",
           stiffness: 40,
           damping: 15,
-        }
+        },
       );
     }, initialDelay * 1000);
 

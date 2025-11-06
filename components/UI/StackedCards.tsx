@@ -17,12 +17,7 @@ type Props = {
   maxVisible?: number;
 };
 
-export default function StackedCards({
-  cards,
-  width = 340,
-  height = 480,
-  maxVisible = 4,
-}: Props) {
+export default function StackedCards({ cards, width = 340, height = 480, maxVisible = 4 }: Props) {
   const [stack, setStack] = useState<Card[]>(cards);
 
   // Motion values for 3D tilt effect
@@ -44,7 +39,7 @@ export default function StackedCards({
 
     // Calculate rotation relative to the center of the card
     const rotateAmountX = ((y - midY) / midY) * -8; // vertical tilt
-    const rotateAmountY = ((x - midX) / midX) * 8;  // horizontal tilt
+    const rotateAmountY = ((x - midX) / midX) * 8; // horizontal tilt
 
     // Update motion values
     rotateX.set(rotateAmountX);
@@ -62,7 +57,7 @@ export default function StackedCards({
     if (stack.length <= 1) return;
     const next = [...stack];
     const top = next.shift()!; // remove first card
-    next.push(top);            // put it at the end
+    next.push(top); // put it at the end
     setStack(next);
   }
 
@@ -81,7 +76,7 @@ export default function StackedCards({
             // Offset from the top card (0 = top)
             const offset = idx;
             const scale = 1 - offset * 0.04; // each deeper card is slightly smaller
-            const y = offset * 18;           // vertical shift for stacking
+            const y = offset * 18; // vertical shift for stacking
 
             const isTop = idx === 0;
 
@@ -108,12 +103,7 @@ export default function StackedCards({
                 onClick={() => isTop && cycleTopToBack()}
               >
                 {/* Background image */}
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={card.image} alt={card.title} fill className="object-cover" />
 
                 {/* Card footer with title */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">

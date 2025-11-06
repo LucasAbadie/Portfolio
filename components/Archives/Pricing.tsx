@@ -1,18 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Check } from "lucide-react"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 
 export default function Pricing() {
-  const [annual, setAnnual] = useState(true)
+  const [annual, setAnnual] = useState(true);
 
   const plans = [
     {
       name: "Basic",
       description: "For small projects and individuals",
       price: annual ? 1900 : 199,
-      features: ["Minimalist design", "Responsive layout", "Basic animations", "1 revision round", "14-day delivery"],
+      features: [
+        "Minimalist design",
+        "Responsive layout",
+        "Basic animations",
+        "1 revision round",
+        "14-day delivery",
+      ],
       cta: "Get Started",
       popular: false,
     },
@@ -47,7 +53,7 @@ export default function Pricing() {
       cta: "Contact Us",
       popular: false,
     },
-  ]
+  ];
 
   return (
     <section id="pricing" className="py-24 relative overflow-hidden bg-[#0a0a0a]">
@@ -114,20 +120,22 @@ export default function Pricing() {
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start group">
                     <Check className="w-5 h-5 mr-2 text-white/60 group-hover:text-white flex-shrink-0 mt-0.5 transition-colors duration-300" />
-                    <span className="text-white/80 group-hover:text-white transition-colors duration-300">{feature}</span>
+                    <span className="text-white/80 group-hover:text-white transition-colors duration-300">
+                      {feature}
+                    </span>
                   </li>
                 ))}
               </ul>
               <button
                 className={`w-full py-3 text-sm uppercase tracking-widest transition-all duration-300 ${
-                  plan.popular 
-                    ? "bg-white text-black hover:bg-white/90" 
+                  plan.popular
+                    ? "bg-white text-black hover:bg-white/90"
                     : "border-2 border-white/30 text-white hover:border-white hover:bg-white/10"
                 }`}
               >
                 {plan.cta}
               </button>
-              
+
               {/* Add subtle highlight for popular plan */}
               {plan.popular && (
                 <div className="absolute inset-0 border-b-2 border-white opacity-20"></div>
@@ -136,10 +144,10 @@ export default function Pricing() {
           ))}
         </div>
       </div>
-      
+
       {/* Decorative background elements */}
       <div className="absolute top-40 left-10 w-32 h-32 border border-white/10"></div>
       <div className="absolute bottom-20 right-10 w-48 h-48 border-2 border-white/5"></div>
     </section>
-  )
+  );
 }

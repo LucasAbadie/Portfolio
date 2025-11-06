@@ -9,68 +9,68 @@ import Gallery from "@/components/Projects/ImageGallery";
 import Footer from "@/components/Footer";
 
 type Props = {
-    params: Promise<{ id: string }>;
+  params: Promise<{ id: string }>;
 };
 
 function FormatPageTitle(str: string): string[] {
-    let arr = Array() as string[];
-    const midIndex: number = str.length / 2;
-    const firstSpaceAfterMid: number = str.indexOf(" ", midIndex);
+  let arr = Array() as string[];
+  const midIndex: number = str.length / 2;
+  const firstSpaceAfterMid: number = str.indexOf(" ", midIndex);
 
-    arr.push(str.substring(0, firstSpaceAfterMid));
-    arr.push(str.substring(firstSpaceAfterMid + 1));
+  arr.push(str.substring(0, firstSpaceAfterMid));
+  arr.push(str.substring(firstSpaceAfterMid + 1));
 
-    return arr;
+  return arr;
 }
 
 export default async function ProjectPage({ params }: Props) {
-    const { id } = await params;
+  const { id } = await params;
 
-    const project = projects.find((p) => p.id === id);
+  const project = projects.find((p) => p.id === id);
 
-    if (!project) {
-        return <div>Project not found</div>;
-    }
+  if (!project) {
+    return <div>Project not found</div>;
+  }
 
-    const titleParts = FormatPageTitle(project.description);
+  const titleParts = FormatPageTitle(project.description);
 
-    return (
-        <main className="bg-black text-white">
-            <NoiseBackground />
-            <Navbar
-                links={[
-                    { href: "/", label: "Accueil" },
-                    { href: "/projects", label: "Mes projets" },
-                ]}
-            />
+  return (
+    <main className="bg-black text-white">
+      <NoiseBackground />
+      <Navbar
+        links={[
+          { href: "/", label: "Accueil" },
+          { href: "/projects", label: "Mes projets" },
+        ]}
+      />
 
-            {/* TODO: Animate this section */}
-            <Hero
-                Name={project.name}
-                Description={project.description}
-                Categories={project.categories}
-                Pitch={project.content.pitch}
-                Banner={project.banner}
-                ProjectUrl={project.url}
-                GithubUrl={project.githubUrl}
-            />
-            <div className="px-8 pt-40 pb-8 xl:py-40 bg-gradient-to-b from-black to-neutral-900">
-                <VideoIntro video={project.content.video} />
-                <Gallery images={project.content.images} />
-            </div>
-            <Competences
-                technicalContribution={project.content.technicalContribution}
-                competences={project.content.competences}
-            />
+      {/* TODO: Animate this section */}
+      <Hero
+        Name={project.name}
+        Description={project.description}
+        Categories={project.categories}
+        Pitch={project.content.pitch}
+        Banner={project.banner}
+        ProjectUrl={project.url}
+        GithubUrl={project.githubUrl}
+      />
+      <div className="px-8 pt-40 pb-8 xl:py-40 bg-gradient-to-b from-black to-neutral-900">
+        <VideoIntro video={project.content.video} />
+        <Gallery images={project.content.images} />
+      </div>
+      <Competences
+        technicalContribution={project.content.technicalContribution}
+        competences={project.content.competences}
+      />
 
-            <Footer />
-        </main>
-    );
+      <Footer />
+    </main>
+  );
 }
 
 // 👉 Next.js a besoin de ça pour générer les pages statiques
 export function generateStaticParams() {
-    return projects.map((project) => ({
-        id: project.id.toString(),
-    }));
+  return projects.map((project) => ({
+    id: project.id.toString(),
+  }));
 }
